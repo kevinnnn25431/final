@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registro de Voluntarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #9ab37e;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .caja-principal {
+            max-width: 800px;
+            width: 100%;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #4caf50;
+        }
+
+        .campo-texto {
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            width: 90%;
+            max-width: 300px;
+            font-size: 15px;
+        }
+
+        .campo-texto:focus {
+            border-color: #4caf50;
+            outline: none;
+        }
+
+        .boton-verde {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+        
+        .boton-verde:hover {
+            background-color: #388e3c;
+        }
+
+        .tabla-datos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        .th-verde {
+            background-color: #edf7ed;
+            color: #1b5e20;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #4caf50;
+        }
+
+        .td-dato {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+
+        .alerta-exito {
+            color: #1b5e20;
+            background-color: #c8e6c9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .fila-botones {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .enlace-nav {
+            padding: 8px 18px;
+            background-color: #757575;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .btn-borrar-rojo {
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌱 Registro de Campaña</h1>
+
+    <div class="caja-principal">
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for m in messages %}
+                    <div class="alerta-exito">{{ m }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/registrar" style="text-align:center;">
+            <input type="text" class="campo-texto" name="nombre" placeholder="Nombre Completo" required><br>
+            <input type="number" class="campo-texto" name="edad" placeholder="Edad" required><br>
+            
+            <select class="campo-texto" name="actividad">
+                <option value="Recolección en Parques">Recolección en Parques</option>
+                <option value="Separación de Basura">Separación de Basura</option>
+                <option value="Charlas Educativas">Charlas Educativas</option>
+            </select><br>
+
+            <button type="submit" class="boton-verde">Guardar Registro</button>
+        </form>
+
+        <h2 style="text-align:center; color:#2e7d32; margin-top:30px;">Voluntarios Inscritos</h2>
+        
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th class="th-verde">ID</th>
+                    <th class="th-verde">Nombre</th>
+                    <th class="th-verde">Edad</th>
+                    <th class="th-verde">Actividad</th>
+                    <th class="th-verde">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in voluntarios %}
+                <tr>
+                    <td class="td-dato">{{ v.id }}</td>
+                    <td class="td-dato">{{ v.nombre }}</td>
+                    <td class="td-dato">{{ v.edad }}</td>
+                    <td class="td-dato">{{ v.actividad }}</td>
+                    <td class="td-dato">
+                        <a href="/eliminar_voluntario/{{ v.id }}" class="btn-borrar-rojo" onclick="return confirm('¿Borrar?');">Eliminar</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="td-dato" style="text-align:center; color:#999;">No hay personas registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="fila-botones">
+            <a href="/index" class="enlace-nav">🏠 Menú Principal</a>
+            <a href="/logout" class="enlace-nav" style="background-color: #d32f2f;">🚪 Salir</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basura con Futuro</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e9f5e9, #c8e6c8, #a3e4a1);
+    background-size: 400% 400%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow-x:hidden;
+}
+
+header{
+    width:100%;
+    padding:50px 20px 30px;
+    text-align:center;
+    background:#1b3a22;
+    color:white;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+    clip-path:polygon(0 0,100% 0,100% 85%,50% 100%,0 85%);
+}
+
+header h1{
+    font-size:55px;
+    font-weight:900;
+    letter-spacing:3px;
+}
+
+header p{
+    font-size:20px;
+    margin-top:5px;
+}
+
+.barra-navegacion-superior{
+    width:100%;
+    background:#3caf72;
+    padding:15px 0;
+    box-shadow:0 8px 15px rgba(0,0,0,0.2);
+    position:sticky;
+    top:0;
+    border-bottom:3px solid #1b3a22;
+}
+
+.lista-menu{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    list-style:none;
+}
+
+.elemento-menu a{
+    color:white;
+    font-weight:bold;
+    padding:10px 18px;
+    border-radius:5px;
+    display:block;
+    transition:0.3s;
+    box-shadow:0 0 10px rgba(60,175,114,0.7);
+    text-transform:uppercase;
+    text-decoration: none;
+}
+
+.elemento-menu a:hover{
+    background:#1b3a22;
+    transform:translateY(-2px);
+    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+main{
+    width:100%;
+    max-width:1000px;
+    margin:60px auto 80px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:0 20px;
+    gap:40px;
+}
+
+.marco-circular-imagen{
+    width:350px;
+    height:350px;
+    background: radial-gradient(circle,#a3e4a1,#3caf72);
+    border-radius:50%;
+    box-shadow:0 15px 45px rgba(0,0,0,0.3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.marco-circular-imagen img{
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid rgba(255,255,255,0.95);
+    box-shadow:0 5px 25px #1b3a22;
+}
+
+.tarjeta-informacion{
+    width:380px;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.15);
+    border:2px solid #3caf72;
+}
+
+.tarjeta-informacion h3{
+    text-align:center;
+    font-size:25px;
+    margin-bottom:15px;
+    font-weight:900;
+    color:#3caf72;
+}
+
+.tarjeta-informacion ul{
+    list-style:none;
+    max-height:400px;
+    overflow-y:auto;
+    padding-right:8px;
+}
+
+.tarjeta-informacion li{
+    margin-bottom:10px;
+    padding-left:15px;
+    font-weight:500;
+}
+
+.tarjeta-informacion li::before{
+    content:"» ";
+    color:#3caf72;
+    font-weight:bold;
+}
+
+@media(max-width:900px){
+    header h1{font-size:45px;}
+    main{flex-direction:column;}
+    .marco-circular-imagen{width:280px;height:280px;}
+    .marco-circular-imagen img{width:220px;height:220px;}
+    .tarjeta-informacion{width:90%;}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>BASURA CON FUTURO</h1>
+  <p>Conciencia y Transformación Ecológica</p>
+</header>
+
+<nav class="barra-navegacion-superior">
+    <ul class="lista-menu">
+        <li class="elemento-menu"><a href="/introduccion">INTRODUCCIÓN</a></li>
+        <li class="elemento-menu"><a href="/beneficios">BENEFICIOS</a></li>
+        <li class="elemento-menu"><a href="/como-funciona">CÓMO FUNCIONA</a></li>
+        <li class="elemento-menu"><a href="/tipos-del-reciclaje">TIPOS</a></li>
+        <li class="elemento-menu"><a href="/registrar">REGISTRAR</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section class="marco-circular-imagen">
+        <img src="{{ url_for('static', filename='images/hola.jpg') }}" alt="Imagen">
+    </section>
+
+    <section class="tarjeta-informacion">
+        <h3>Datos de Impacto</h3>
+        <ul>
+            <li>1 litro de aceite contamina hasta 1000 litros de agua.</li>
+            <li>El vidrio se puede reciclar infinitas veces.</li>
+            <li>Reciclar aluminio ahorra 95% de energía.</li>
+            <li>El PET tarda más de 450 años en degradarse.</li>
+            <li>1 tonelada de papel salva 17 árboles.</li>
+            <li>Solo el 9% del plástico global se recicla.</li>
+            <li>Reciclar 1 lata de aluminio ahorra energía suficiente para TV 3h.</li>
+            <li>El cartón reciclado reduce 28% la contaminación del agua.</li>
+            <li>El plástico reciclado reduce emisiones de CO2 hasta 70%.</li>
+            <li>Cada árbol produce oxígeno para 2 personas al día.</li>
+            <li>Reciclar vidrio ahorra hasta 30% de energía en su fabricación.</li>
+            <li>Los desechos electrónicos son la fuente más rápida de metales raros.</li>
+        </ul>
+    </section>
+</main>
+
+</body>
+</html>

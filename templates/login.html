@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basura con Futuro - Acceso</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #d7e9cc, #b8d9a3);
+        }
+
+        .tarjeta-central-acceso {
+            width: 360px;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0px 5px 18px rgba(0,0,0,0.20);
+            animation: animacion-entrada-suave 0.5s ease;
+        }
+
+        @keyframes animacion-entrada-suave {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #2e6234;
+            font-size: 22px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        input {
+            width: 92%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 10px;
+            border: 1px solid #b6c7b6;
+            font-size: 15px;
+            background: #f8fff5;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6caf70;
+            box-shadow: 0 0 6px rgba(108, 175, 112, 0.3);
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            background: #63b472;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #4c965a;
+        }
+
+        .texto-enlace-verde {
+            color: #2e6a3d;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .bloque-formulario { display: none; }
+        #login { display: block; }
+
+        .imagen-logo-circular {
+            width: 135px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+        }
+        
+        .mensaje-alerta {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        .error { background-color: #e65252; }
+        .success { background-color: #4CAF50; }
+    </style>
+
+</head>
+<body>
+
+<div class="tarjeta-central-acceso">
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="mensaje-alerta {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <img src="{{ url_for('static', filename='images/hola.jpg') }}" class="imagen-logo-circular">
+
+    <h2>Basura con Futuro</h2>
+
+    <div id="login" class="bloque-formulario">
+        <form method="POST" action="/iniciar">
+            <input type="text" name="usuario" placeholder="Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+
+        <p style="margin-top: 15px;">
+            ¿No tienes cuenta? <span class="texto-enlace-verde" onclick="mostrar('registro')">Regístrate</span>
+        </p>
+    </div>
+
+    <div id="registro" class="bloque-formulario">
+        <h3>Crear Cuenta</h3>
+
+        <form method="POST" action="/registrarse">
+            <input type="text" name="usuario" placeholder="Nuevo usuario" required>
+            <input type="password" name="password" placeholder="Nueva contraseña" required>
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <p style="margin-top: 15px;">
+            ¿Ya tienes cuenta? <span class="texto-enlace-verde" onclick="mostrar('login')">Iniciar sesión</span>
+        </p>
+    </div>
+
+    <div id="bienvenida" class="bloque-formulario">
+        <h2 id="texto_bienvenida">¡Bienvenido!</h2>
+        <p>Redirigiendo al menú principal...</p>
+    </div>
+
+</div>
+
+<script>
+    function mostrar(id) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("registro").style.display = "none";
+        document.getElementById("bienvenida").style.display = "none";
+
+        document.getElementById(id).style.display = "block";
+    }
+
+    {% if mostrar_bienvenida %}
+        const nombre = "{{ nombre_usuario }}";
+        
+        document.getElementById("texto_bienvenida").textContent = "¡Bienvenido, " + nombre + "!";
+        mostrar('bienvenida');
+        
+        setTimeout(function() {
+            window.location.href = "{{ url_for('index') }}";
+        }, 2000); 
+    {% else %}
+        mostrar('login');
+    {% endif %}
+
+</script>
+
+</body>
+</html>

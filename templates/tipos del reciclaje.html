@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clasifica la Basura</title>
+    <style>
+        body {
+            background-color: #27ae60;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .contenedor-juego {
+            background-color: white;
+            color: #333;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .marcador {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #e67e22;
+        }
+
+        .zona-basura {
+            border: 2px dashed #95a5a6;
+            min-height: 90px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .item-basura {
+            font-size: 45px;
+            cursor: move;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .lista-botes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .bote {
+            width: 100px;
+            height: 120px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .color-verde { background-color: #2ecc71; }
+        .color-naranja { background-color: #f39c12; }
+        .color-azul { background-color: #3498db; }
+        .color-celeste { background-color: #1abc9c; }
+        .color-gris { background-color: #7f8c8d; }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            font-weight: bold;
+        }
+
+        .btn-reiniciar { background-color: #3498db; color: white; }
+        .btn-salir { background-color: #e74c3c; color: white; }
+    </style>
+</head>
+<body>
+
+    <h1>♻️ CLASIFICA LA BASURA ♻️</h1>
+
+    <div class="contenedor-juego">
+        <div class="marcador">Puntos: <span id="puntos">0</span></div>
+        <div id="mensaje" style="height: 25px; font-weight: bold;"></div>
+
+        <div class="zona-basura" id="zona-objetos"></div>
+
+        <div class="lista-botes">
+            <div class="bote color-verde" ondrop="soltar(event, 'o')" ondragover="permitir(event)">
+                <span style="font-size: 30px;">🍏</span>ORGÁNICO
+            </div>
+            <div class="bote color-naranja" ondrop="soltar(event, 'p')" ondragover="permitir(event)">
+                <span style="font-size: 30px;">📦</span>PAPEL
+            </div>
+            <div class="bote color-azul" ondrop="soltar(event, 'pl')" ondragover="permitir(event)">
+                <span style="font-size: 30px;">🥤</span>PLÁSTICO
+            </div>
+            <div class="bote color-celeste" ondrop="soltar(event, 'v')" ondragover="permitir(event)">
+                <span style="font-size: 30px;">🍾</span>VIDRIO
+            </div>
+            <div class="bote color-gris" ondrop="soltar(event, 'm')" ondragover="permitir(event)">
+                <span style="font-size: 30px;">🥫</span>METAL
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-reiniciar" onclick="iniciar()">Nuevos Objetos</button>
+    <button class="btn-salir" onclick="location.href='/index'">Regresar al Menú</button>
+
+    <script>
+        var puntos = 0;
+        var datos = [
+            {img:'🍌', tipo:'o'}, {img:'🍎', tipo:'o'},
+            {img:'📰', tipo:'p'}, {img:'📦', tipo:'p'},
+            {img:'🥤', tipo:'pl'},{img:'🧴', tipo:'pl'},
+            {img:'🍾', tipo:'v'}, {img:'🍷', tipo:'v'},
+            {img:'🥫', tipo:'m'}, {img:'🥄', tipo:'m'}
+        ];
+
+        function iniciar() {
+            var zona = document.getElementById('zona-objetos');
+            zona.innerHTML = '';
+            puntos = 0;
+            document.getElementById('puntos').innerHTML = puntos;
+            document.getElementById('mensaje').innerHTML = '';
+            datos.sort(function() { return 0.5 - Math.random() });
+
+            for(var i = 0; i < 5; i++) {
+                var div = document.createElement('div');
+                div.className = 'item-basura';
+                div.innerHTML = datos[i].img;
+                div.draggable = true;
+                div.id = 'objeto' + i;
+                div.setAttribute('data-tipo', datos[i].tipo);
+                div.ondragstart = function(ev) {
+                    ev.dataTransfer.setData("id_objeto", ev.target.id);
+                    ev.dataTransfer.setData("tipo_objeto", ev.target.getAttribute('data-tipo'));
+                };
+                zona.appendChild(div);
+            }
+        }
+
+        function permitir(ev) {
+            ev.preventDefault();
+        }
+
+        function soltar(ev, tipoBote) {
+            ev.preventDefault();
+            var id = ev.dataTransfer.getData("id_objeto");
+            var tipoItem = ev.dataTransfer.getData("tipo_objeto");
+            var elemento = document.getElementById(id);
+
+            if(tipoItem == tipoBote) {
+                puntos = puntos + 10;
+                document.getElementById('mensaje').innerHTML = "✅ ¡Bien hecho!";
+                document.getElementById('mensaje').style.color = "green";
+                if(elemento) elemento.remove();
+            } else {
+                puntos = puntos - 5;
+                if(puntos < 0) puntos = 0;
+                document.getElementById('mensaje').innerHTML = "❌ Ese no va ahí";
+                document.getElementById('mensaje').style.color = "red";
+            }
+            document.getElementById('puntos').innerHTML = puntos;
+
+            if(document.getElementById('zona-objetos').children.length == 0) {
+                document.getElementById('mensaje').innerHTML = "🏆 ¡GANASTE!";
+                document.getElementById('mensaje').style.color = "#2980b9";
+            }
+        }
+
+        iniciar();
+    </script>
+</body>
+</html>

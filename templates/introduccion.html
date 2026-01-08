@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introducción - Basura con Futuro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e9f5e9, #c8e6c8, #a3e4a1);
+            background-size: 400% 400%;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        h1 {
+            color: #1b3a22;
+            margin-top: 40px;
+            font-size: 45px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contenedor-introduccion {
+            max-width: 900px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .bloque-texto-informativo {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-left: 10px solid #3caf72;
+            margin-bottom: 30px;
+        }
+
+        .bloque-texto-informativo h2 {
+            color: #1b3a22;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .bloque-texto-informativo p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: justify;
+            color: #555;
+        }
+
+        .contenedor-tarjetas-3r {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .tarjeta-individual-3r {
+            background: white;
+            flex: 1;
+            min-width: 250px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 5px solid #1b3a22;
+        }
+
+        .tarjeta-individual-3r:hover {
+            transform: translateY(-5px);
+        }
+
+        .icono-tarjeta-grande {
+            font-size: 50px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tarjeta-individual-3r h3 {
+            color: #3caf72;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .tarjeta-individual-3r p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .area-botones-navegacion {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            background: #1b3a22;
+            color: white;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background: #3caf72;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Introducción</h1>
+
+    <div class="contenedor-introduccion">
+        
+        <div class="bloque-texto-informativo">
+            <h2>🌍 El Problema de la Basura</h2>
+            <p>
+                Vivimos en una sociedad de "usar y tirar". Cada año, generamos miles de millones de toneladas de residuos que terminan en vertederos, océanos y bosques. 
+                <br><br>
+                <strong>La basura no existe en la naturaleza;</strong> es un invento humano. Cuando tiramos algo, en realidad no desaparece, solo lo movemos de lugar. Este proyecto busca cambiar esa mentalidad: la basura no es un desperdicio, es un recurso con futuro.
+            </p>
+        </div>
+
+        <h2 style="text-align:center; color:#1b3a22; margin-bottom:20px;">La Regla de las 3 R</h2>
+        
+        <div class="contenedor-tarjetas-3r">
+            
+            <div class="tarjeta-individual-3r">
+                <span class="icono-tarjeta-grande">📉</span>
+                <h3>1. Reducir</h3>
+                <p>Es la más importante. Significa consumir menos y evitar comprar cosas innecesarias. El mejor residuo es el que no se genera.</p>
+            </div>
+
+            <div class="tarjeta-individual-3r">
+                <span class="icono-tarjeta-grande">🔄</span>
+                <h3>2. Reutilizar</h3>
+                <p>Darle una segunda vida a los objetos antes de tirarlos. Un frasco puede ser un vaso; una llanta, una maceta.</p>
+            </div>
+
+            <div class="tarjeta-individual-3r">
+                <span class="icono-tarjeta-grande">♻️</span>
+                <h3>3. Reciclar</h3>
+                <p>Transformar materiales usados (papel, plástico, vidrio) en materia prima para crear nuevos productos.</p>
+            </div>
+
+        </div>
+
+        <div class="bloque-texto-informativo" style="margin-top: 30px; border-left-color: #f9a825;">
+            <h2>🎯 Nuestra Misión</h2>
+            <p>
+                Queremos demostrar que pequeños cambios individuales generan un impacto global masivo. A través de la información y la acción correcta, podemos reducir nuestra huella ecológica y asegurar un planeta habitable para las futuras generaciones.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="area-botones-navegacion">
+        <button onclick="location.href='/index'">🏠 Volver al Menú</button>
+        <button onclick="location.href='/logout'" style="background:#d32f2f;">🚪 Salir</button>
+    </div>
+
+</body>
+</html>

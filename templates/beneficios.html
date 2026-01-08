@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beneficios Interactivos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e9f5e9, #c8e6c8, #a3e4a1);
+            background-size: 400% 400%;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #1b3a22;
+            margin-top: 40px;
+            font-size: 40px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contenedor-grid-tarjetas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tarjeta-interactiva {
+            background-color: transparent;
+            width: 280px;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .estructura-interna-tarjeta {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 15px;
+        }
+
+        .tarjeta-interactiva:hover .estructura-interna-tarjeta {
+            transform: rotateY(180deg);
+        }
+
+        .lado-frente-tarjeta, .lado-atras-tarjeta {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lado-frente-tarjeta {
+            background-color: #3caf72;
+            color: white;
+        }
+        .lado-frente-tarjeta h3 { font-size: 22px; }
+        .lado-frente-tarjeta span { font-size: 40px; margin-bottom: 10px; }
+
+        .lado-atras-tarjeta {
+            background-color: #1b3a22;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .seccion-inferior-doble {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            width: 90%;
+            margin-bottom: 40px;
+        }
+
+        .caja-contenido-blanca {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 2px solid #3caf72;
+            flex: 1; 
+            min-width: 300px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .caja-contenido-blanca h2 {
+            color: #1b3a22;
+            margin-bottom: 15px;
+        }
+
+        .caja-contenido-blanca input {
+            padding: 10px;
+            font-size: 18px;
+            width: 80px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        .mensaje-resultado-verde {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3caf72;
+            margin-top: 15px;
+            min-height: 30px;
+        }
+
+        .parrafo-explicativo-detalle {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #444;
+            text-align: justify;
+        }
+
+        .area-botones-inferiores {
+            margin-bottom: 40px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            background: #1b3a22;
+            color: white;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background: #3caf72;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>¿Sabías que...?</h1>
+    <p style="text-align:center; max-width:600px;">Descubre la verdad girando las tarjetas.</p>
+
+    <div class="contenedor-grid-tarjetas">
+        <div class="tarjeta-interactiva">
+            <div class="estructura-interna-tarjeta">
+                <div class="lado-frente-tarjeta"><span>🧴</span><h3>El Plástico</h3></div>
+                <div class="lado-atras-tarjeta"><p>Una botella tarda hasta <strong>500 años</strong> en descomponerse.</p></div>
+            </div>
+        </div>
+        <div class="tarjeta-interactiva">
+            <div class="estructura-interna-tarjeta">
+                <div class="lado-frente-tarjeta"><span>🗞️</span><h3>El Papel</h3></div>
+                <div class="lado-atras-tarjeta"><p>1 tonelada de papel reciclado salva <strong>17 árboles</strong>.</p></div>
+            </div>
+        </div>
+        <div class="tarjeta-interactiva">
+            <div class="estructura-interna-tarjeta">
+                <div class="lado-frente-tarjeta"><span>⚡</span><h3>Aluminio</h3></div>
+                <div class="lado-atras-tarjeta"><p>Reciclar ahorra el <strong>95%</strong> de la energía de producción.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="seccion-inferior-doble">
+        
+        <div class="caja-contenido-blanca">
+            <h2>💡 Calculadora de Luz</h2>
+            <p>Si reciclas <input type="number" id="cantidadLatas" value="1" min="1" oninput="calcularAhorro()"> latas...</p>
+            <div class="mensaje-resultado-verde" id="textoResultado">
+                ¡Energía para 1 foco por 4 horas!
+            </div>
+        </div>
+
+        <div class="caja-contenido-blanca" style="background: #f1f8e9;"> <h2>¿Por qué pasa esto?</h2>
+            <p class="parrafo-explicativo-detalle">
+                El aluminio nuevo se extrae de rocas (Bauxita), y derretir esas rocas requiere <strong>temperaturas extremas</strong> y electricidad masiva. 
+                <br><br>
+                En cambio, reciclar una lata es solo volver a fundir el metal que ya existe. 
+                <strong>¡Ahorras el 95% de energía!</strong> Es como recalentar comida vs. cocinarla desde cero.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="area-botones-inferiores">
+        <button onclick="location.href='/index'">🏠 Menú</button>
+        <button onclick="location.href='/logout'" style="background:#d32f2f;">🚪 Salir</button>
+    </div>
+
+    <script>
+        function calcularAhorro() {
+            const cantidad = document.getElementById('cantidadLatas').value;
+            const horas = cantidad * 4; 
+            const elemento = document.getElementById('textoResultado');
+            
+            if(cantidad > 0){
+                elemento.innerHTML = `¡Podrías tener un foco prendido por <strong>${horas} horas</strong>! 💡`;
+            } else {
+                elemento.innerText = "Ingresa un número válido.";
+            }
+        }
+    </script>
+
+</body>
+</html>

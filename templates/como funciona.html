@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cómo Funciona el Reciclaje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e9f5e9, #c8e6c8, #a3e4a1);
+            background-size: 400% 400%;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        h1 {
+            color: #1b3a22;
+            margin-top: 40px;
+            font-size: 45px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contenedor-articulos {
+            max-width: 850px;
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        .bloque-contenido-texto {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-left: 5px solid #3caf72;
+        }
+
+        .bloque-contenido-texto h2 {
+            color: #1b3a22;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+
+        .bloque-contenido-texto p {
+            font-size: 17px;
+            line-height: 1.7;
+            text-align: justify;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .bloque-contenido-texto strong {
+            color: #3caf72;
+            font-weight: bold;
+        }
+
+        .lista-pasos-verificacion {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .lista-pasos-verificacion li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 17px;
+        }
+
+        .lista-pasos-verificacion li::before {
+            content: "✓"; 
+            position: absolute;
+            left: 0;
+            color: #3caf72;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .area-botones-navegacion {
+            margin-bottom: 40px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            background: #1b3a22;
+            color: white;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background: #3caf72;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>El Ciclo del Reciclaje</h1>
+
+    <div class="contenedor-articulos">
+        
+        <div class="bloque-contenido-texto">
+            <h2>1️⃣ La Separación: Todo Empieza en Casa</h2>
+            <p>
+                El paso más crucial de todo el proceso no ocurre en una fábrica, sino en tu hogar. La clave del éxito del reciclaje es la <strong>Separación en Origen</strong>. Cuando los materiales están limpios y separados (vidrio con vidrio, papel con papel), su valor como materia prima se mantiene. Un material contaminado (por ejemplo, papel con grasa de comida) es casi imposible de reciclar.
+            </p>
+            
+            <p>
+                Este proceso requiere la colaboración de todos para dividir los residuos en dos categorías principales:
+            </p>
+            <ul class="lista-pasos-verificacion">
+                <li><strong>Residuos Orgánicos:</strong> Restos de comida, cáscaras, desechos de jardín. Idealmente van a compostaje.</li>
+                <li><strong>Residuos Inorgánicos:</strong> Plásticos, metales, vidrio, papel y cartón limpios. Estos son los que entran al ciclo de transformación.</li>
+            </ul>
+        </div>
+
+        <div class="bloque-contenido-texto">
+            <h2>2️⃣ Recolección y Transformación Industrial</h2>
+            <p>
+                Una vez separados, los residuos inorgánicos son llevados por camiones de recolección selectiva a las <strong>Plantas de Clasificación</strong>. Ahí pasan por un proceso riguroso:
+            </p>
+            <ul class="lista-pasos-verificacion">
+                <li><strong>Clasificación:</strong> Máquinas y personal humano separan los materiales por tipo y color (PET, HDPE, aluminio, etc.).</li>
+                <li><strong>Limpieza y Empacado:</strong> Los materiales se limpian a fondo, se compactan en grandes pacas o balas y se preparan para su transporte.</li>
+                <li><strong>Fabricación de Materia Prima:</strong> El material se tritura y se funde. Por ejemplo, el plástico se convierte en pequeños "pellets" que son la nueva materia prima para las fábricas.</li>
+            </ul>
+        </div>
+        
+        <div class="bloque-contenido-texto" style="border-left-color: #f9a825;">
+            <h2>3️⃣ Cerrando el Círculo: La Nueva Vida</h2>
+            <p>
+                Finalmente, la nueva materia prima reciclada se vende a otras empresas. Los <strong>pellets de plástico</strong> se usan para hacer nueva ropa o muebles. El <strong>aluminio fundido</strong> se moldea en nuevas latas. De esta manera, evitamos extraer recursos de la naturaleza (como el petróleo para el plástico o la bauxita para el aluminio), creando una verdadera <strong>Economía Circular</strong> donde los materiales siempre tienen un futuro.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="area-botones-navegacion">
+        <button onclick="location.href='/index'">🏠 Menú Principal</button>
+        <button onclick="location.href='/logout'" style="background:#d32f2f;">🚪 Salir</button>
+    </div>
+
+</body>
+</html>
