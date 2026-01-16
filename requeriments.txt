@@ -1,6 +1,0 @@
-flask
-flask_sqlalchemy
-flask_login
-flask_bcrypt
-flask-wtf
-https://github.com/kevinnn2009marti-sys/kevin_pruebas.git
