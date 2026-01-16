@@ -4,4 +4,3 @@ gunicorn
 Flask
 Werkzeug
 flask_login
-https://github.com/kevinnnn25431/final.git
